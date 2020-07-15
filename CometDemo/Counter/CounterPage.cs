@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using Comet;
 
 namespace CometDemo.Counter
@@ -13,7 +14,8 @@ namespace CometDemo.Counter
         {
             new Text(() => $"Value: {state.Count}")
                 .Color(Color.Black)
-                .FontSize(32),
+                .FontSize(32)
+                .TextAlignment(TextAlignment.Center),
             new HStack
             {
                 new Button("Increment", () => state.Count++)
@@ -36,18 +38,15 @@ namespace CometDemo.Counter
                 .Frame(330, height: 44)
                 .Background(Color.Grey)
                 .Color(Color.White)
-                .Padding(new Thickness(20, 5, 20, 20)),
+                .Padding(new Thickness(20, 5)),
             new HStack
             {
                 new Text("Timer"),
                 new Toggle(state.IsTimerOn, (val) => state.IsTimerOn = val),
             },
-            new HStack
-            {
-                new Button("+", () => state.Step++),
-                new Text(() => $"Step: {state.Step}"),
-                new Button("-", () => state.Step--),
-            }
+            new Text(() => $"Step: {state.Step}").TextAlignment(TextAlignment.Center),
+            new Stepper(state.Step, 1000, -1000, 1, (val) => state.Step = (int)val)
+            .TextAlignment(TextAlignment.Center),
         };
     }
 }

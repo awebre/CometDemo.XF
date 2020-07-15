@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Comet;
 using CometDemo.Animation;
 using CometDemo.Counter;
+using CometDemo.Download;
 using CometDemo.Navigation;
 
 namespace CometDemo
@@ -12,7 +13,8 @@ namespace CometDemo
         List<MenuItem> pages = new List<MenuItem>
         {
             new MenuItem("Counter", () => new CounterPage()),
-            new MenuItem("Animated Loading", () => new LoadingPage())
+            new MenuItem("Animated Loading", () => new LoadingPage()),
+            new MenuItem("Download Image", () => new DownloadPage())
         };
 
         [Body]
@@ -24,7 +26,7 @@ namespace CometDemo
                     new Text(page.Title),
                     new Spacer(),
                 }.Frame(height: 44).Margin(left: 10)
-            }.OnSelectedNavigate((page) => page.Page().Title(page.Title))
+            }.OnSelectedNavigate((page) => page.View().Title(page.Title))
         };
     }
 }
